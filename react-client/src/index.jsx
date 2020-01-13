@@ -31,7 +31,7 @@ class App extends React.Component {
     return (<div>
       <CustomNavbar />
       {/* <List items={this.state.items}/> */}
-      {/* <MainImageCarousels /> */}
+      <MainImageCarousels />
     </div>)
   }
 }
