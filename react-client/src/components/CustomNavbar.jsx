@@ -1,8 +1,21 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
+import styled from 'styled-components';
+import MyVerticallyCenteredModal from './MyVerticallyCenteredModal.jsx';
 
-class CustomNavbar extends React.Component {
-  render() {
+
+const VerLine = styled.div`
+height: 15px;
+border-left: 1px solid rgb(228, 231, 231);
+margin-left: 13px;
+margin-right: 13px;
+`;
+
+// class CustomNavbar extends React.Component {
+// const CustomNavbar = (props) => (
+function CustomNavbar(props) {
+  const [modalShow, setModalShow] = React.useState(false);
+  // render() {
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home"><img src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png" style={{height: 40}}></img></Navbar.Brand>
@@ -23,14 +36,20 @@ class CustomNavbar extends React.Component {
             <FormControl type="text" placeholder="Find a recipe" className="mr-sm-2" />
             <Button variant="outline-success">Search</Button>
           </Form>
-          <Form inline>
-            <FormControl type="text" placeholder="Find a recipe" className="mr-sm-2" />
-            <Button variant="outline-success">Search</Button>
-          </Form>
+          <VerLine />
+          <Button variant="outline-success" onClick={() => setModalShow(true)}>Ingredient Search</Button>
+
+          <MyVerticallyCenteredModal
+            show={modalShow}
+            onHide={() => setModalShow(false)}/>
+
         </Navbar.Collapse>
       </Navbar>
     )
-  }
 }
+//     )
+// )
+//   }
+// }
 
 export default CustomNavbar;
