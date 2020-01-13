@@ -13,11 +13,16 @@ module.exports = {
       {
         test : /\.jsx?/,
         include : SRC_DIR,
-        loader : 'babel-loader',      
+        loader : 'babel-loader',
         query: {
           presets: ['react', 'es2015']
        }
       }
     ]
+  }
+  resolve: {
+    alias: {
+      react: path.resolve('./node_modules/react')
+    }
   }
 };
