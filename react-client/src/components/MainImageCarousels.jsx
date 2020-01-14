@@ -2,6 +2,11 @@ import React from 'react';
 import Carousel from 'react-bootstrap/Carousel';
 import styled from 'styled-components';
 
+const StyledCarousel = styled(Carousel)`
+  position: relative;
+  left: 12%;
+`;
+
 const StyledCarouselCaption = styled(Carousel.Caption)`
   position: relative;
   left: auto;
@@ -15,7 +20,7 @@ const StyledCarouselParagraph = styled.p`
 class MainImageCarousels extends React.Component {
   render() {
     return (
-      <Carousel className="w-75 p-3">
+      <StyledCarousel className="w-75 p-3">
         <Carousel.Item>
           <a href="https://www.bonappetit.com/recipe/vegetarian-bean-chili-with-fritos"><img
             className="d-block w-100"
@@ -82,7 +87,7 @@ class MainImageCarousels extends React.Component {
             <StyledCarouselParagraph>These ribs are tenderized with tangy kombucha—yep\!—and flavored with Mexican mole spices.</StyledCarouselParagraph>
           </StyledCarouselCaption>
         </Carousel.Item>
-      </Carousel>
+      </StyledCarousel>
     )
   }
 }

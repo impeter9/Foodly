@@ -5,21 +5,21 @@ import MyVerticallyCenteredModal from './MyVerticallyCenteredModal.jsx';
 
 
 const VerLine = styled.div`
-height: 15px;
-border-left: 1px solid rgb(228, 231, 231);
-margin-left: 13px;
-margin-right: 13px;
+  height: 25px;
+  border-left: 1px solid rgb(228, 231, 231);
+  margin-left: 13px;
+  margin-right: 13px;
 `;
 
 function CustomNavbar(props) {
   const [modalShow, setModalShow] = React.useState(false);
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home"><img src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png" style={{height: 40}}></img></Navbar.Brand>
+        <Navbar.Brand href="#home"><img src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png" style={{height: 45}} onClick={props.handleBackToHome} /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#home" onClick={props.handleBackToHome}>Home</Nav.Link>
             <Nav.Link href="#link">Link</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -29,9 +29,9 @@ function CustomNavbar(props) {
               <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Form inline>
+          <Form inline onSubmit={props.handleSearchChange}>
             <FormControl type="text" placeholder="Find a recipe" className="mr-sm-0" />
-            <Button variant="outline-success">Search</Button>
+            <Button variant="outline-success" type="submit">Search</Button>
           </Form>
           <VerLine />
           <Button variant="outline-success" onClick={() => setModalShow(true)}>Ingredient Search</Button>

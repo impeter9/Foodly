@@ -1,6 +1,11 @@
 import React from 'react';
 import ListItem from './ListItem.jsx';
 import ListGroup from 'react-bootstrap/ListGroup';
+import styled from 'styled-components';
+
+const Header = styled.div`
+  margin-left: 5px;
+`;
 
 class List extends React.Component {
   constructor(props) {
@@ -12,9 +17,11 @@ class List extends React.Component {
   render() {
     return (
       <ListGroup>
-        <h4> List Component </h4>
-        There are { props.items.length } items.
-        { props.items.map(item => <ListItem item={item}/>)}
+        <Header>
+          <h5> Recipes </h5>
+          There are { this.props.data.length } recipes for {this.props.searchedIngredients.join(', ')}.
+        </Header>
+        { this.props.data.map(item => <ListItem item={item}/>)}
       </ListGroup>
     )
   }
