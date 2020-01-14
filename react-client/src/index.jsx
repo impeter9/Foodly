@@ -28,6 +28,24 @@ class App extends React.Component {
     });
   }
 
+  handleAddToFavorite(e) {
+    e.preventDefault();
+    console.log(e.target.getAttribute("value"));
+    console.log(this.state.data[e.target.getAttribute("value")]);
+    const obj = this.state.data[e.target.getAttribute("value")]['recipe'];
+    axios.post('http://localhost:3000/api/recipes', {
+      label: obj.label,
+      image: obj.image,
+      sourceUrl: obj.url,
+      edmUrl: obj.shareAs,
+      servings: obj.yield,
+      dietLabels: obj.dietLabels,
+      healthLabels: obj.healthLabels,
+      calories: Math.round(obj.calories),
+      ingredients: obj.ingredientsLines,
+    })
+  }
+
   handleSearchChange(e) {
     e.preventDefault();
     console.log(e.target[0].value);
@@ -37,7 +55,6 @@ class App extends React.Component {
       const ingredients = e.target[0].value.split(' ');
       e.target[0].value = '';
       const apiURL = "https://api.edamam.com/search?q=";
-      console.log(key);
       const apiKey = "&app_key=" + key.RECIPE_API_KEY;
       const apiId = "&app_id=d124943d";
       const maxTime = "&time=30";
@@ -68,7 +85,7 @@ class App extends React.Component {
     return (<div>
       <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} />
       {this.state.searchBool ? (
-        <List data={this.state.data} searchedIngredients={this.state.searchedIngredients} />
+        <List data={this.state.data} searchedIngredients={this.state.searchedIngredients} handleAddToFavorite={this.handleAddToFavorite.bind(this)} />
       ) : (
         <MainImageCarousels />
       )}

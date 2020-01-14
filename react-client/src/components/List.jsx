@@ -21,7 +21,7 @@ class List extends React.Component {
           <h5> Recipes </h5>
           There are { this.props.data.length } recipes for {this.props.searchedIngredients.join(', ')}.
         </Header>
-        { this.props.data.map(item => <ListItem item={item}/>)}
+        { this.props.data.map((item, index) => <ListItem index={index} key={index} item={item} handleAddToFavorite={this.props.handleAddToFavorite} />)}
       </ListGroup>
     )
   }
