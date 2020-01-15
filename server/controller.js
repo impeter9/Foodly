@@ -8,7 +8,7 @@ module.exports = {
       } else {
         res.status(200).send(data);
       }
-    }, req.params);
+    });
   },
   postrecipe: (req, res) => {
     Model.postrecipe((error, data) => {
@@ -17,6 +17,6 @@ module.exports = {
       } else {
         res.status(200).send(data);
       }
-    }, req.params);
+    }, req.body);
   },
 };

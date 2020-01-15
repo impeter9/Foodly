@@ -5,6 +5,7 @@ import axios from "axios";
 import List from './components/List.jsx';
 import CustomNavbar from './components/CustomNavbar.jsx';
 import MainImageCarousels from './components/MainImageCarousels.jsx';
+import Favorites from './components/Favorites.jsx';
 
 import key from '../../config.js';
 
@@ -13,19 +14,66 @@ class App extends React.Component {
     super(props);
     this.state = {
       data: [],
+      favorites: [],
       searchBool: false,
+      favBool: false,
       searchedIngredients: [],
     }
   }
 
   componentDidMount() {
-
+    axios.get('http://localhost:3000/api/recipes')
+    .then((res) => {
+      const fav = res.data;
+      fav.sort(function(a,b) {
+        if (a['updated'] > b['updated']){
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      this.setState({
+        favorites: fav,
+      });
+    });
   }
 
   handleBackToHome() {
-    this.setState({
-      searchBool: false,
+    axios.get('http://localhost:3000/api/recipes')
+    .then((res) => {
+      const fav = res.data;
+      fav.sort(function(a,b) {
+        if (a['updated'] > b['updated']){
+          return -1;
+        } else {
+          return 1;
+        }
+      });
+      this.setState({
+        favorites: fav,
+        searchBool: false,
+        favBool: false,
+      });
     });
+  }
+
+  handleShowFavorites() {
+    axios.get('http://localhost:3000/api/recipes')
+      .then((res) => {
+        const fav = res.data;
+        fav.sort(function(a,b) {
+          if (a['updated'] > b['updated']){
+            return -1;
+          } else {
+            return 1;
+          }
+        });
+        this.setState({
+          favorites: fav,
+          favBool: true,
+          searchBool: false,
+        });
+      });
   }
 
   handleAddToFavorite(e) {
@@ -42,8 +90,9 @@ class App extends React.Component {
       dietLabels: obj.dietLabels,
       healthLabels: obj.healthLabels,
       calories: Math.round(obj.calories),
-      ingredients: obj.ingredientsLines,
+      ingredients: obj.ingredientLines,
     })
+    alert("Recipe is added to your favorites!");
   }
 
   handleSearchChange(e) {
@@ -75,6 +124,7 @@ class App extends React.Component {
         this.setState({
           data: response.data.hits,
           searchBool: true,
+          favBool: false,
           searchedIngredients: ingredients,
         });
       });
@@ -82,15 +132,32 @@ class App extends React.Component {
   }
 
   render () {
-    return (<div>
-      <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} />
-      {this.state.searchBool ? (
-        <List data={this.state.data} searchedIngredients={this.state.searchedIngredients} handleAddToFavorite={this.handleAddToFavorite.bind(this)} />
-      ) : (
+    if((this.state.favBool === false)&&(this.state.searchBool === false)){
+      return (<div>
+        <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} handleShowFavorites={this.handleShowFavorites.bind(this)} />
         <MainImageCarousels />
-      )}
-    </div>)
-  }
+        <Favorites favorites={this.state.favorites} />
+      </div>)
+      } else if(this.state.favBool === true){
+        return (<div>
+          <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} handleShowFavorites={this.handleShowFavorites.bind(this)} />
+          <Favorites favorites={this.state.favorites} />
+        </div>)
+      } else if(this.state.searchBool === true){
+        return (<div>
+          <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} handleShowFavorites={this.handleShowFavorites.bind(this)} />
+          <List data={this.state.data} searchedIngredients={this.state.searchedIngredients} handleAddToFavorite={this.handleAddToFavorite.bind(this)} />
+        </div>)
+      }
+    }
+    // return (<div>
+    //   <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} handleShowFavorites={this.handleShowFavorites.bind(this)} />
+    //   {this.state.searchBool ? (
+    //     <List data={this.state.data} searchedIngredients={this.state.searchedIngredients} handleAddToFavorite={this.handleAddToFavorite.bind(this)} />
+    //   ) : (
+    //     <MainImageCarousels />
+    //   )}
+    // </div>)
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));

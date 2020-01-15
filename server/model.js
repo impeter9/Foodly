@@ -15,7 +15,7 @@ var MyModel = mongoose.model('Recipes', new mongoose.Schema({
 }));
 
 module.exports = {
-  getrecipe: (callback, data) => {
+  getrecipe: (callback) => {
     MyModel.find({}, (err, data) => {
       if (err) {
         return err;
@@ -30,7 +30,7 @@ module.exports = {
       if (err) {
         return err;
       } else {
-        callback(null,data);
+        callback(null, data);
       }
     });
   },

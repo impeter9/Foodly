@@ -62,7 +62,7 @@ class ListItem extends React.Component {
             </div>
           )}
           <div>
-            <h5>Calories: {Math.round(this.props.item['recipe']['calories'])} kcal</h5>
+            <h5>Calories: {Math.round(this.props.item['recipe']['calories']/this.props.item['recipe']['yield'])} kcal/serving</h5>
           </div>
         </div>
         <div>
