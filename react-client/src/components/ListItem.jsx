@@ -17,6 +17,11 @@ const Spacer = styled.div`
   margin-top: 10px;
 `;
 
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
 class ListItem extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +34,7 @@ class ListItem extends React.Component {
       <Container>
         <form value={this.props.index} onSubmit={this.props.handleAddToFavorite}>
           <h4>{ this.props.item['recipe']['label'] }</h4>
-          <img src={ this.props.item['recipe']['image'] }/>
+          <Image src={ this.props.item['recipe']['image'] }/>
           <Spacer></Spacer>
           <Button type="submit">Add to Favorite</Button>
         </form>

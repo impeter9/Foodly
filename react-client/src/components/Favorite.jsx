@@ -17,6 +17,11 @@ const Spacer = styled.div`
   margin-top: 10px;
 `;
 
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
 class Favorite extends React.Component {
   constructor(props) {
     super(props);
@@ -29,7 +34,7 @@ class Favorite extends React.Component {
       <Container>
         <form value={this.props.index}>
           <h4>{ this.props.item['label'] }</h4>
-          <img src={ this.props.item['image'] }/>
+          <Image src={ this.props.item['image'] }/>
           <Spacer></Spacer>
           <Button type="submit">Delete from Favorites</Button>
         </form>
