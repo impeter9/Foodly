@@ -6,6 +6,7 @@ import List from './components/List.jsx';
 import CustomNavbar from './components/CustomNavbar.jsx';
 import MainImageCarousels from './components/MainImageCarousels.jsx';
 import Favorites from './components/Favorites.jsx';
+import Welcome from './components/Welcome.jsx';
 
 import key from '../../config.js';
 
@@ -137,6 +138,7 @@ class App extends React.Component {
         <CustomNavbar handleBackToHome={this.handleBackToHome.bind(this)} handleSearchChange={this.handleSearchChange.bind(this)} handleShowFavorites={this.handleShowFavorites.bind(this)} />
         <MainImageCarousels />
         <Favorites favorites={this.state.favorites} />
+        <Welcome />
       </div>)
       } else if(this.state.favBool === true){
         return (<div>

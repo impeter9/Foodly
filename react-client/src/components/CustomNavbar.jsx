@@ -1,7 +1,9 @@
 import React from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import MyVerticallyCenteredModal from './MyVerticallyCenteredModal.jsx';
+import IngredientSearchModal from './IngredientSearchModal.jsx';
+import RegisterModal from './RegisterModal.jsx';
+import LoginModal from './LoginModal.jsx';
 
 
 const VerLine = styled.div`
@@ -12,7 +14,9 @@ const VerLine = styled.div`
 `;
 
 function CustomNavbar(props) {
-  const [modalShow, setModalShow] = React.useState(false);
+  const [modalShowIS, setModalShowIS] = React.useState(false);
+  const [modalShowR, setModalShowR] = React.useState(false);
+  const [modalShowL, setModalShowL] = React.useState(false);
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home"><img src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png" style={{height: 45}} onClick={props.handleBackToHome} /></Navbar.Brand>
@@ -34,10 +38,23 @@ function CustomNavbar(props) {
             <Button variant="outline-success" type="submit">Search</Button>
           </Form>
           <VerLine />
-          <Button variant="outline-success" onClick={() => setModalShow(true)}>Ingredient Search</Button>
-          <MyVerticallyCenteredModal
-            show={modalShow}
-            onHide={() => setModalShow(false)}/>
+          <Button variant="outline-success" onClick={() => setModalShowIS(true)}>Ingredient Search</Button>
+          <VerLine />
+          <Button variant="secondary" onClick={() => setModalShowL(true)}>Login</Button>
+          <Button variant="primary" onClick={() => setModalShowR(true)}>Register</Button>
+          <IngredientSearchModal
+            show={modalShowIS}
+            onHide={() => setModalShowIS(false)}/>
+          <RegisterModal
+            setModalShowL={setModalShowL}
+            setModalShowR={setModalShowR}
+            show={modalShowR}
+            onHide={() => setModalShowR(false)}/>
+          <LoginModal
+            setModalShowL={setModalShowL}
+            setModalShowR={setModalShowR}
+            show={modalShowL}
+            onHide={() => setModalShowL(false)}/>
         </Navbar.Collapse>
       </Navbar>
     )
