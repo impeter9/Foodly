@@ -1,7 +1,9 @@
 const mongo = require('mongodb');
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true});
-var MyModel = mongoose.model('Recipes', new mongoose.Schema({
+mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true})
+  .then(() => console.log('mongoDB Connected...'))
+  .then((err) => console.log(err));
+var RecipeModel = mongoose.model('Recipe', new mongoose.Schema({
   updated: { type: Date, default: Date.now },
   label: String,
   image: String,
@@ -13,10 +15,16 @@ var MyModel = mongoose.model('Recipes', new mongoose.Schema({
   calories: Number,
   ingredients: [{ type: String }],
 }));
+var UserModel = mongoose.model('User', new mongoose.Schema({
+  name: {type: String, required: true},
+  email: {type: String, required: true},
+  password: {type: String, required: true},
+  date: {type: Date, default: Date.now}
+}));
 
 module.exports = {
   getrecipe: (callback) => {
-    MyModel.find({}, (err, data) => {
+    RecipeModel.find({}, (err, data) => {
       if (err) {
         return err;
       } else {
@@ -25,7 +33,7 @@ module.exports = {
     })
   },
   postrecipe: (callback, data) => {
-    var Recipe = new MyModel(data);
+    var Recipe = new RecipeModel(data);
     Recipe.save((err, data) => {
       if (err) {
         return err;
@@ -34,4 +42,14 @@ module.exports = {
       }
     });
   },
+  // postrecipe: (callback, data) => {
+  //   var Recipe = new RecipeModel(data);
+  //   Recipe.save((err, data) => {
+  //     if (err) {
+  //       return err;
+  //     } else {
+  //       callback(null, data);
+  //     }
+  //   });
+  // },
 }

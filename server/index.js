@@ -25,6 +25,14 @@ app.get('/api/register', (req, res) => {
   res.send('Register');
 });
 
+app.post('/api/register', (req, res) => {
+  console.log(req.body);
+  res.send('hello');
+  const {name, eamil, password, password2} = req.body;
+  let error = [];
+
+});
+
 app.listen(PORT, function() {
   console.log(`listening on port ${PORT}!`);
 });

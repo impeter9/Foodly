@@ -2,6 +2,7 @@ import React from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import axios from "axios";
 
 const ButtonHover = styled.p`
   color: rgb(238, 90, 91);
@@ -17,6 +18,22 @@ const HorGrid = styled.div`
 `;
 
 function RegisterModal(props) {
+
+  const handleRegister = function(e) {
+    e.preventDefault();
+    const {name, value, email, password, password2} = e.target;
+    console.log(name.value);
+    console.log(email.value);
+    console.log(password.value);
+    console.log(password2.value);
+    axios.post('http://localhost:3000/api/register', {
+      name: name.value,
+      email: email.value,
+      password: password.value,
+      password2: password2.value
+    })
+  };
+
   const {setModalShowL,setModalShowR, ...modalProps} = props;
   return (
     <Modal
@@ -36,9 +53,9 @@ function RegisterModal(props) {
               <h1 class="text-center mb-3">
                 <i class="fas fa-user-plus"></i> Register
               </h1>
-              <form action="/users/register" method="POST">
+              <form onSubmit={handleRegister} action="/users/register" method="POST">
                 <div class="form-group">
-                  <label for="name">Name</label>
+                  <label value="name">Name</label>
                   <input
                     type="name"
                     id="name"
@@ -49,7 +66,7 @@ function RegisterModal(props) {
                   />
                 </div>
                 <div class="form-group">
-                  <label for="email">Email</label>
+                  <label value="email">Email</label>
                   <input
                     type="email"
                     id="email"
@@ -60,7 +77,7 @@ function RegisterModal(props) {
                   />
                 </div>
                 <div class="form-group">
-                  <label for="password">Password</label>
+                  <label value="password">Password</label>
                   <input
                     type="password"
                     id="password"
@@ -71,7 +88,7 @@ function RegisterModal(props) {
                   />
                 </div>
                 <div class="form-group">
-                  <label for="password2">Confirm Password</label>
+                  <label value="password2">Confirm Password</label>
                   <input
                     type="password"
                     id="password2"

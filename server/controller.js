@@ -19,4 +19,13 @@ module.exports = {
       }
     }, req.body);
   },
+  postregister: (req, res) => {
+    Model.postregister((error, data) => {
+      if (error) {
+        res.status(400).send(error);
+      } else {
+        res.status(200).send(data);
+      }
+    }, req.body);
+  },
 };
