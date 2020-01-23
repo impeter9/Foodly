@@ -28,9 +28,26 @@ app.get('/api/register', (req, res) => {
 app.post('/api/register', (req, res) => {
   console.log(req.body);
   res.send('hello');
-  const {name, eamil, password, password2} = req.body;
+  const {name, email, password, password2} = req.body;
   let error = [];
+  // check required fields
+  if (!name || !email || !password || !password2) {
+    errors.push({ msg:'Please fill in all fields' });
+  }
+  // check passwords match
+  if (password !== password2) {
+    errors.push({ msg: 'Passwords do not match' });
+  }
+  //check passwords length
+  if (password.length < 6) {
+    errors.push({ msg: 'Password should be at least 6 characters' });
+  }
 
+  if (errors.length > 0) {
+    res.render('register');
+  } else {
+    res.send('pass');
+  }
 });
 
 app.listen(PORT, function() {
