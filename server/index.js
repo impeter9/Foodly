@@ -1,7 +1,11 @@
 var express = require('express');
 var bodyParser = require('body-parser');
+const bcrypt = require('bcryptjs');
 const Controller = require('./controller.js');
 const PORT = process.env.port || 3000;
+
+const Model = require('./model.js');
+
 var app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,7 +17,7 @@ app.get('/api/recipes', (req, res) => {
 });
 
 app.post('/api/recipes', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   Controller.postrecipe(req, res);
 });
 
@@ -26,7 +30,7 @@ app.get('/api/register', (req, res) => {
 });
 
 app.post('/api/register', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
   const {name, email, password, password2} = req.body;
   let errors = [];
   // check required fields
@@ -45,7 +49,29 @@ app.post('/api/register', (req, res) => {
   if (errors.length > 0) {
     res.status(200).send(errors);
   } else {
-    res.send('pass');
+    Model.usermodel.findOne({ email: email})
+      .then(user => {
+        if (user) {
+          errors.push({ msg: 'Email is already registered' });
+          res.status(200).send(errors);
+        } else {
+          const newUser = new Model.usermodel({
+            name,
+            email,
+            password,
+          });
+          bcrypt.genSalt(10, (err, salt) =>
+            bcrypt.hash(newUser.password, salt, (err, hash) => {
+              if (err) throw err;
+              // set password to hash
+              newUser.password = hash;
+              // save user
+              newUser.save()
+                .then(res.status(200).send([]))
+                .catch(err => console.log(err));
+            }))
+        }
+      })
   }
 });
 

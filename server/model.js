@@ -23,6 +23,7 @@ var UserModel = mongoose.model('User', new mongoose.Schema({
 }));
 
 module.exports = {
+  usermodel: UserModel,
   getrecipe: (callback) => {
     RecipeModel.find({}, (err, data) => {
       if (err) {
@@ -42,6 +43,31 @@ module.exports = {
       }
     });
   },
+  checkforuser: (callback, email) => {
+    UserModel.findOne({ email: email})
+      .then(user => {
+        if (user) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+  },
+
+  // createnewuser: (req, res, userinfo) => {
+  //   const newUser = new UserModel(userinfo);
+  //   bcrypt.genSalt(10, (err, salt) =>
+  //     bcrypt.hash(newUser.password, salt, (err, hash) => {
+  //       if (err) throw err;
+  //       // set password to hash
+  //       newUser.password = hash;
+  //       // save user
+  //       newUser.save()
+  //         .then(res.status(200).send('login'))
+  //         .catch(err => console.log(err));
+  //   }))
+  // }
+
   // postrecipe: (callback, data) => {
   //   var Recipe = new RecipeModel(data);
   //   Recipe.save((err, data) => {

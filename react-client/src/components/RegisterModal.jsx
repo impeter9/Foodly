@@ -106,11 +106,6 @@ function RegisterForm({updateErrors}) {
   )
 }
 
-// const handleSubmit = text=> event=> {
-//   event.preventDefault()
-//   console.log(text)
-// }
-
 function RegisterModal(props) {
   const [errors, setErrors] = useState([]);
   const {setModalShowL,setModalShowR, ...modalProps} = props;
@@ -125,7 +120,7 @@ function RegisterModal(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onHide={() => {setErrors([])}}>
         <Modal.Title id="contained-modal-title-vcenter">
           Welcome to Foodly!
         </Modal.Title>
@@ -139,11 +134,10 @@ function RegisterModal(props) {
               </h1>
               {errors.map((error, index)=> (
                 <AlertDismissibleExample key={index} index={index} error={error} />
-                // <ErrorCase key={index} index={index} error={error} />
               ))}
               <RegisterForm updateErrors={updateErrors} />
               <HorGrid class="lead mt-4">Already Have An Account? <ButtonHover
-                onClick={() => {props.setModalShowR(false); props.setModalShowL(true)}}>&nbsp;Login</ButtonHover></HorGrid>
+                onClick={() => {props.setModalShowR(false); props.setModalShowL(true); setErrors([])}}>&nbsp;Login</ButtonHover></HorGrid>
             </div>
           </div>
         </div>

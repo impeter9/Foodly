@@ -28,4 +28,17 @@ module.exports = {
       }
     }, req.body);
   },
+  checkforuser: (email) => {
+    Model.checkforuser(email);
+  },
+  createnewuser: (req, res, userinfo) => {
+    Model.createnewuser((error, data) => {
+      if (error) {
+        res.status(400).send(error);
+      } else {
+        res.status(200).send('login');
+      }
+    })
+    Model.createnewuser(userinfo);
+  }
 };
