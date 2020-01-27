@@ -1,5 +1,6 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Alert from 'react-bootstrap/Alert';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import axios from "axios";
@@ -17,24 +18,107 @@ const HorGrid = styled.div`
   flex-direction: row;
 `;
 
-function RegisterModal(props) {
+function ErrorCase({error}) {
+  return (
+    <div>{error}</div>
+  )
+}
 
-  const handleRegister = function(e) {
+function AlertDismissibleExample({ error, index }) {
+  const [show, setShow] = useState(true);
+
+  if (show) {
+    return (
+      <Alert variant="danger" onClose={() => setShow(false)} dismissible>
+        <Alert.Heading>{error.msg}</Alert.Heading>
+      </Alert>
+    );
+  } else {
+    return (
+      <div></div>
+    )
+  }
+}
+
+function RegisterForm({updateErrors}) {
+  const handleRegister = e => {
     e.preventDefault();
     const {name, value, email, password, password2} = e.target;
-    console.log(name.value);
-    console.log(email.value);
-    console.log(password.value);
-    console.log(password2.value);
     axios.post('http://localhost:3000/api/register', {
       name: name.value,
       email: email.value,
       password: password.value,
       password2: password2.value
+    }).then((res) => {
+      updateErrors(res.data);
     })
   };
+  return (
+    <form onSubmit={handleRegister} action="/users/register" method="POST">
+      <div class="form-group">
+        <label value="name">Name</label>
+        <input
+          type="name"
+          id="name"
+          name="name"
+          class="form-control"
+          placeholder="Enter Name"
+          // value="<%= typeof name != 'undefined' ? name : '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label value="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          class="form-control"
+          placeholder="Enter Email"
+          // value="<%= typeof email != 'undefined' ? email : '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label value="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          name="password"
+          class="form-control"
+          placeholder="Create Password"
+          // value="<%= typeof password != 'undefined' ? password : '' %>"
+        />
+      </div>
+      <div class="form-group">
+        <label value="password2">Confirm Password</label>
+        <input
+          type="password"
+          id="password2"
+          name="password2"
+          class="form-control"
+          placeholder="Confirm Password"
+          // value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block">
+        Register
+      </button>
+    </form>
+  )
+}
 
+// const handleSubmit = text=> event=> {
+//   event.preventDefault()
+//   console.log(text)
+// }
+
+function RegisterModal(props) {
+  const [errors, setErrors] = useState([]);
   const {setModalShowL,setModalShowR, ...modalProps} = props;
+
+  const updateErrors = (newErrors) => {
+    setErrors(newErrors);
+    console.log(errors);
+  }
   return (
     <Modal
       {...modalProps}
@@ -53,55 +137,11 @@ function RegisterModal(props) {
               <h1 class="text-center mb-3">
                 <i class="fas fa-user-plus"></i> Register
               </h1>
-              <form onSubmit={handleRegister} action="/users/register" method="POST">
-                <div class="form-group">
-                  <label value="name">Name</label>
-                  <input
-                    type="name"
-                    id="name"
-                    name="name"
-                    class="form-control"
-                    placeholder="Enter Name"
-                    // value="<%= typeof name != 'undefined' ? name : '' %>"
-                  />
-                </div>
-                <div class="form-group">
-                  <label value="email">Email</label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="form-control"
-                    placeholder="Enter Email"
-                    // value="<%= typeof email != 'undefined' ? email : '' %>"
-                  />
-                </div>
-                <div class="form-group">
-                  <label value="password">Password</label>
-                  <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    class="form-control"
-                    placeholder="Create Password"
-                    // value="<%= typeof password != 'undefined' ? password : '' %>"
-                  />
-                </div>
-                <div class="form-group">
-                  <label value="password2">Confirm Password</label>
-                  <input
-                    type="password"
-                    id="password2"
-                    name="password2"
-                    class="form-control"
-                    placeholder="Confirm Password"
-                    // value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
-                  />
-                </div>
-                <button type="submit" class="btn btn-primary btn-block">
-                  Register
-                </button>
-              </form>
+              {errors.map((error, index)=> (
+                <AlertDismissibleExample key={index} index={index} error={error} />
+                // <ErrorCase key={index} index={index} error={error} />
+              ))}
+              <RegisterForm updateErrors={updateErrors} />
               <HorGrid class="lead mt-4">Already Have An Account? <ButtonHover
                 onClick={() => {props.setModalShowR(false); props.setModalShowL(true)}}>&nbsp;Login</ButtonHover></HorGrid>
             </div>

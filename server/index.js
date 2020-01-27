@@ -27,9 +27,8 @@ app.get('/api/register', (req, res) => {
 
 app.post('/api/register', (req, res) => {
   console.log(req.body);
-  res.send('hello');
   const {name, email, password, password2} = req.body;
-  let error = [];
+  let errors = [];
   // check required fields
   if (!name || !email || !password || !password2) {
     errors.push({ msg:'Please fill in all fields' });
@@ -44,7 +43,7 @@ app.post('/api/register', (req, res) => {
   }
 
   if (errors.length > 0) {
-    res.render('register');
+    res.status(200).send(errors);
   } else {
     res.send('pass');
   }
