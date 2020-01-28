@@ -40,7 +40,7 @@ function AlertDismissibleExample({ error, index }) {
   }
 }
 
-function RegisterForm({updateErrors}) {
+function RegisterForm({updateErrors, handleRegisterComplete}) {
   const handleRegister = e => {
     e.preventDefault();
     const {name, value, email, password, password2} = e.target;
@@ -50,6 +50,9 @@ function RegisterForm({updateErrors}) {
       password: password.value,
       password2: password2.value
     }).then((res) => {
+      if(res.data.length === 0) {
+        handleRegisterComplete();
+      }
       updateErrors(res.data);
     })
   };
@@ -108,7 +111,7 @@ function RegisterForm({updateErrors}) {
 
 function RegisterModal(props) {
   const [errors, setErrors] = useState([]);
-  const {setModalShowL,setModalShowR, ...modalProps} = props;
+  const {setModalShowL,setModalShowR, handleRegisterComplete, ...modalProps} = props;
 
   const updateErrors = (newErrors) => {
     setErrors(newErrors);
@@ -135,7 +138,7 @@ function RegisterModal(props) {
               {errors.map((error, index)=> (
                 <AlertDismissibleExample key={index} index={index} error={error} />
               ))}
-              <RegisterForm updateErrors={updateErrors} />
+              <RegisterForm updateErrors={updateErrors} handleRegisterComplete={props.handleRegisterComplete} />
               <HorGrid class="lead mt-4">Already Have An Account? <ButtonHover
                 onClick={() => {props.setModalShowR(false); props.setModalShowL(true); setErrors([])}}>&nbsp;Login</ButtonHover></HorGrid>
             </div>

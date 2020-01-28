@@ -17,6 +17,12 @@ function CustomNavbar(props) {
   const [modalShowIS, setModalShowIS] = React.useState(false);
   const [modalShowR, setModalShowR] = React.useState(false);
   const [modalShowL, setModalShowL] = React.useState(false);
+  const [regComp, setRegComp] = React.useState(false);
+  const handleRegisterComplete = () => {
+    setRegComp(true);
+    setModalShowR(false);
+    setModalShowL(true);
+  }
     return (
       <Navbar bg="light" expand="lg">
         <Navbar.Brand href="#home"><img src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png" style={{height: 45}} onClick={props.handleBackToHome} /></Navbar.Brand>
@@ -46,11 +52,13 @@ function CustomNavbar(props) {
             show={modalShowIS}
             onHide={() => setModalShowIS(false)}/>
           <RegisterModal
+            handleRegisterComplete={handleRegisterComplete}
             setModalShowL={setModalShowL}
             setModalShowR={setModalShowR}
             show={modalShowR}
             onHide={() => setModalShowR(false)}/>
           <LoginModal
+            regComp = {regComp}
             setModalShowL={setModalShowL}
             setModalShowR={setModalShowR}
             show={modalShowL}

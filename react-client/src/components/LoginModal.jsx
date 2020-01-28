@@ -17,7 +17,7 @@ const HorGrid = styled.div`
 `;
 
 function LoginModal(props) {
-  const {setModalShowL,setModalShowR, ...modalProps} = props;
+  const {setModalShowL,setModalShowR, regComp, ...modalProps} = props;
   return (
     <Modal
       {...modalProps}
@@ -30,6 +30,7 @@ function LoginModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
+        {props.regComp ? <div>reg complete please sign in</div> : <div>nothing</div>}
         <div class="row mt-5">
           <div class="col-md-6 m-auto">
             <div class="card card-body">
