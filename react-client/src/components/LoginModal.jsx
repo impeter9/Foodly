@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-bootstrap/Modal';
+import Alert from 'react-bootstrap/Alert';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
@@ -24,13 +25,17 @@ function LoginModal(props) {
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
     >
-      <Modal.Header closeButton>
+      <Modal.Header closeButton onHide={() => {props.setRegComp(false)}}>
         <Modal.Title id="contained-modal-title-vcenter">
           Welcome Back!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {props.regComp ? <div>reg complete please sign in</div> : <div>nothing</div>}
+        {props.regComp ?
+            <Alert variant="success">
+              Registration complete please sign in!
+            </Alert> :
+          <div></div>}
         <div class="row mt-5">
           <div class="col-md-6 m-auto">
             <div class="card card-body">

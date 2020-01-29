@@ -61,6 +61,7 @@ function CustomNavbar(props) {
             regComp = {regComp}
             setModalShowL={setModalShowL}
             setModalShowR={setModalShowR}
+            setRegComp={setRegComp}
             show={modalShowL}
             onHide={() => setModalShowL(false)}/>
         </Navbar.Collapse>

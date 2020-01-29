@@ -18,12 +18,6 @@ const HorGrid = styled.div`
   flex-direction: row;
 `;
 
-function ErrorCase({error}) {
-  return (
-    <div>{error}</div>
-  )
-}
-
 function AlertDismissibleExample({ error, index }) {
   const [show, setShow] = useState(true);
 
