@@ -17,7 +17,3 @@ npm run server:production
 
 Navigate to link in a web browser.
 >http://localhost:3000
-
-
-Optionally add an 'id' query key, value between 1 and 100.
->http://localhost:3004/5
