@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 const Container = styled(ListGroup.Item)`
   display: grid;
   grid-template-columns: 25% 35% 20% 20%;
+  grid-gap: 15px;
 `;
 
 const StyledButton = styled(Button)`
@@ -35,8 +36,6 @@ class ListItem extends React.Component {
         <form value={this.props.index} onSubmit={this.props.handleAddToFavorite}>
           <h4>{ this.props.item['recipe']['label'] }</h4>
           <Image src={ this.props.item['recipe']['image'] }/>
-          <Spacer></Spacer>
-          <Button type="submit">Add to Favorite</Button>
         </form>
         <div>
           <h5>Ingredient</h5>
@@ -52,7 +51,7 @@ class ListItem extends React.Component {
             <div>
             <h5>Diet Labels</h5>
             <ul>
-              {this.props.item['recipe']['dietLabels'].map(label => <p>-{label}</p>)}
+              {this.props.item['recipe']['dietLabels'].map(label => <li>{label}</li>)}
             </ul>
             </div>
           )}
@@ -62,7 +61,7 @@ class ListItem extends React.Component {
             <div>
             <h5>Health Labels</h5>
             <ul>
-              {this.props.item['recipe']['healthLabels'].map(label => <p>-{label}</p>)}
+              {this.props.item['recipe']['healthLabels'].map(label => <li>{label}</li>)}
             </ul>
             </div>
           )}
@@ -74,6 +73,8 @@ class ListItem extends React.Component {
           <a href={this.props.item['recipe']['url']} target="_blank"><Button type="submit">Click to See Source</Button></a>
           <Spacer></Spacer>
           <a href={this.props.item['recipe']['shareAs']} target="_blank"><Button type="submit">Click to See Nutrients</Button></a>
+          <Spacer></Spacer>
+          <Button type="submit">Add to Favorite</Button>
         </div>
       </Container>
     )

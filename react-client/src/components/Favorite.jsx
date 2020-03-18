@@ -74,7 +74,6 @@ class Favorite extends React.Component {
           <Spacer></Spacer>
           <a href={this.props.item['edmUrl']} target="_blank"><Button type="submit">Click to See Nutrients</Button></a>
           <Spacer></Spacer>
-          <Spacer></Spacer>
           <Button variant="secondary" type="submit">Delete from Favorites</Button>
         </div>
       </Container>
