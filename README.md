@@ -10,7 +10,6 @@ From within the root directory of repo run the following commands:
 
 ```sh
 npm install
-npm run db:setup
 npm run build:production
 npm run server:production
 ```

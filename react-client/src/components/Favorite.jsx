@@ -6,6 +6,7 @@ import Button from 'react-bootstrap/Button';
 const Container = styled(ListGroup.Item)`
   display: grid;
   grid-template-columns: 25% 35% 20% 20%;
+  grid-gap: 15px;
 `;
 
 const StyledButton = styled(Button)`
@@ -35,8 +36,6 @@ class Favorite extends React.Component {
         <form value={this.props.index}>
           <h4>{ this.props.item['label'] }</h4>
           <Image src={ this.props.item['image'] }/>
-          <Spacer></Spacer>
-          <Button type="submit">Delete from Favorites</Button>
         </form>
         <div>
           <h5>Ingredient</h5>
@@ -52,7 +51,7 @@ class Favorite extends React.Component {
             <div>
             <h5>Diet Labels</h5>
             <ul>
-              {this.props.item['dietLabels'].map(label => <p>-{label}</p>)}
+              {this.props.item['dietLabels'].map(label => <li>{label}</li>)}
             </ul>
             </div>
           )}
@@ -62,7 +61,7 @@ class Favorite extends React.Component {
             <div>
             <h5>Health Labels</h5>
             <ul>
-              {this.props.item['healthLabels'].map(label => <p>-{label}</p>)}
+              {this.props.item['healthLabels'].map(label => <li>{label}</li>)}
             </ul>
             </div>
           )}
@@ -74,6 +73,9 @@ class Favorite extends React.Component {
           <a href={this.props.item['sourceUrl']} target="_blank"><Button type="submit">Click to See Source</Button></a>
           <Spacer></Spacer>
           <a href={this.props.item['edmUrl']} target="_blank"><Button type="submit">Click to See Nutrients</Button></a>
+          <Spacer></Spacer>
+          <Spacer></Spacer>
+          <Button variant="secondary" type="submit">Delete from Favorites</Button>
         </div>
       </Container>
     )
