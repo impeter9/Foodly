@@ -19,7 +19,7 @@ const Spacer = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
+  width: 85%;
   height: auto;
 `;
 

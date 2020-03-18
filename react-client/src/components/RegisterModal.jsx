@@ -18,7 +18,7 @@ const HorGrid = styled.div`
   flex-direction: row;
 `;
 
-function AlertDismissibleExample({ error, index }) {
+function DismissibleAlert({ error, index }) {
   const [show, setShow] = useState(true);
 
   if (show) {
@@ -130,7 +130,7 @@ function RegisterModal(props) {
                 <i class="fas fa-user-plus"></i> Register
               </h1>
               {errors.map((error, index)=> (
-                <AlertDismissibleExample key={index} index={index} error={error} />
+                <DismissibleAlert key={index} index={index} error={error} />
               ))}
               <RegisterForm updateErrors={updateErrors} handleRegisterComplete={props.handleRegisterComplete} />
               <HorGrid class="lead mt-4">Already Have An Account? <ButtonHover
