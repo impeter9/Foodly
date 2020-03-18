@@ -3,8 +3,8 @@ var bodyParser = require('body-parser');
 const bcrypt = require('bcryptjs');
 const Controller = require('./controller.js');
 const PORT = process.env.port || 3000;
-
 const passport = require('passport');
+//
 const flash = require('connect-flash');
 const session = require('express-session');
 
@@ -17,6 +17,7 @@ require('./passport')(passport);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+//
 app.use(session({
   secret: 'secret',
   resave: true,
@@ -26,10 +27,12 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//
 app.use(flash());
 
 app.use(express.static(__dirname + '/../react-client/dist'));
 
+// Requests
 app.get('/api/recipes', (req, res) => {
   Controller.getrecipe(req, res);
 });
@@ -93,9 +96,24 @@ app.post('/api/register', (req, res) => {
   }
 });
 
-// app.post('/api/login', (req, res) => {
-//   passport.authenticate('local', )
-// });
+app.post('/api/login', (req, res, next) => {
+  // passport.authenticate('local', function(err, user, info) {
+  //   if (err) { res.status(200).send(err); }
+  //   if (!user) { res.status(200).send(['User not found']); }
+  //   req.logIn(user, function(err) {
+  //     if (err) { res.status(200).send(err); }
+  //     res.status(200).send(['Login Success', user.username]);
+  //   });
+  // })(req, res, next);
+
+  // console.log('loadskfalsdfmasldfk')
+  // res.send('Login');
+
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/api/login',
+    failureFlash: true })(req, res, next);
+});
 
 app.listen(PORT, function() {
   console.log(`listening on port ${PORT}!`);

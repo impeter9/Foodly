@@ -3,6 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Alert from 'react-bootstrap/Alert';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
+import axios from "axios";
 
 const ButtonHover = styled.p`
   color: rgb(238, 90, 91);
@@ -19,6 +20,16 @@ const HorGrid = styled.div`
 
 function LoginModal(props) {
   const {setModalShowL,setModalShowR, regComp, ...modalProps} = props;
+  const handleLogin = e => {
+    e.preventDefault();
+    const {email, password} = e.target;
+    axios.post('http://localhost:3000/api/login', {
+      email: email.value,
+      password: password.value,
+    }).then((res) => {
+      console.log("login happened?")
+    })
+  };
   return (
     <Modal
       {...modalProps}
@@ -40,7 +51,7 @@ function LoginModal(props) {
           <div class="col-md-6 m-auto">
             <div class="card card-body">
               <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
-              <form action="/users/login" method="POST">
+              <form onSubmit={handleLogin} action="/users/login" method="POST">
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input

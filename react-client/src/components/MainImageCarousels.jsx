@@ -44,28 +44,6 @@ class MainImageCarousels extends React.Component {
           </StyledCarouselCaption>
         </Carousel.Item>
         <Carousel.Item>
-          <a href="https://www.bonappetit.com/recipe/jamaican-beef-patties" target="_blank"><img
-            className="d-block w-100"
-            src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly_carousels_003.jpg"
-            alt="Third slide"
-          /></a>
-          <StyledCarouselCaption>
-          <a href="https://www.bonappetit.com/recipe/jamaican-beef-patties" target="_blank"><h3>Jamaican Beef Patties</h3></a>
-            <StyledCarouselParagraph>These delectable flaky pastries can be found at street vendors and restaurants in Jamaica and throughout the Caribbean, but they’re fun to make at home as a snack or appetizer. </StyledCarouselParagraph>
-          </StyledCarouselCaption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <a href="https://www.bonappetit.com/recipe/tropical-trifle-with-coconut-and-rum" target="_blank"><img
-            className="d-block w-100"
-            src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly_carousels_004.jpg"
-            alt="Fourth slide"
-          /></a>
-          <StyledCarouselCaption>
-          <a href="https://www.bonappetit.com/recipe/tropical-trifle-with-coconut-and-rum" target="_blank"><h3>Tropical Trifle With Coconut and Rum</h3></a>
-            <StyledCarouselParagraph>Creamy, sweet Ataulfo mangoes are ideal for this simple, vibrant dessert.</StyledCarouselParagraph>
-          </StyledCarouselCaption>
-        </Carousel.Item>
-        <Carousel.Item>
           <a href="https://www.bonappetit.com/recipe/warm-winter-vegetable-salad-with-halloumi" target="_blank"><img
             className="d-block w-100"
             src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly_carousels_005.jpg"
