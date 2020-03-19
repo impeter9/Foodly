@@ -24,6 +24,7 @@ Navigate to link in a web browser.
 Home
 ![home](https://foodly-mvp.s3-us-west-1.amazonaws.com/ss-home.png)
 
+
 Register
 ![register](https://foodly-mvp.s3-us-west-1.amazonaws.com/ss-register.png)
 
