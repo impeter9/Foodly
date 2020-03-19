@@ -1,5 +1,6 @@
 # FOODLY - Recipe Recommendation Application
 Web application for finding recipes based on ingredients you already have.
+
 Include/exclude ingredients, check nutrients, and save your favorite recipes!
 
 ## Setup to run locally
