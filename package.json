@@ -21,7 +21,7 @@
     "webpack": "^2.2.1"
   },
   "dependencies": {
-    "angular": "^1.6.3",
+    "angular": "^1.8.3",
     "axios": "^0.19.1",
     "bcryptjs": "^2.4.3",
     "bootstrap": "^4.4.1",
