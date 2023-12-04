@@ -2,9 +2,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
-// Load module
 const Model = require('./model.js');
-// Model.usermodel.findOne({ email: email})
 
 module.exports = function(passport) {
   passport.use(

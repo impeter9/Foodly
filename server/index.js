@@ -38,7 +38,6 @@ app.get('/api/recipes', (req, res) => {
 });
 
 app.post('/api/recipes', (req, res) => {
-  // console.log(req.body);
   Controller.postrecipe(req, res);
 });
 
@@ -51,7 +50,6 @@ app.get('/api/register', (req, res) => {
 });
 
 app.post('/api/register', (req, res) => {
-  // console.log(req.body);
   const {name, email, password, password2} = req.body;
   let errors = [];
   // check required fields
@@ -106,7 +104,6 @@ app.post('/api/login', (req, res, next) => {
   //   });
   // })(req, res, next);
 
-  // console.log('loadskfalsdfmasldfk')
   // res.send('Login');
 
   passport.authenticate('local', {

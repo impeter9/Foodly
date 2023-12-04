@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal';
 import Alert from 'react-bootstrap/Alert';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
-import axios from "axios";
+import axios from 'axios';
 
 const ButtonHover = styled.p`
   color: rgb(238, 90, 91);
@@ -27,54 +27,54 @@ function LoginModal(props) {
       email: email.value,
       password: password.value,
     }).then((res) => {
-      console.log("login happened?")
+      console.log('login complete');
     })
   };
   return (
     <Modal
       {...modalProps}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
+      size='lg'
+      aria-labelledby='contained-modal-title-vcenter'
     >
       <Modal.Header closeButton onHide={() => {props.setRegComp(false)}}>
-        <Modal.Title id="contained-modal-title-vcenter">
+        <Modal.Title id='contained-modal-title-vcenter'>
           Welcome Back!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         {props.regComp ?
-            <Alert variant="success">
+            <Alert variant='success'>
               Registration complete please sign in!
             </Alert> :
           <div></div>}
-        <div className="row mt-5">
-          <div className="col-md-6 m-auto">
-            <div className="card card-body">
-              <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>  Login</h1>
-              <form onSubmit={handleLogin} action="/users/login" method="POST">
-                <div className="form-group">
-                  <label for="email">Email</label>
+        <div className='row mt-5'>
+          <div className='col-md-6 m-auto'>
+            <div className='card card-body'>
+              <h1 className='text-center mb-3'><i className='fas fa-sign-in-alt'></i>  Login</h1>
+              <form onSubmit={handleLogin} action='/users/login' method='POST'>
+                <div className='form-group'>
+                  <label for='email'>Email</label>
                   <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    className="form-control"
-                    placeholder="Enter Email"
+                    type='email'
+                    id='email'
+                    name='email'
+                    className='form-control'
+                    placeholder='Enter Email'
                   />
                 </div>
-                <div className="form-group">
-                  <label for="password">Password</label>
+                <div className='form-group'>
+                  <label for='password'>Password</label>
                   <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    className="form-control"
-                    placeholder="Enter Password"
+                    type='password'
+                    id='password'
+                    name='password'
+                    className='form-control'
+                    placeholder='Enter Password'
                   />
                 </div>
-                <button type="submit" className="btn btn-primary btn-block">Login</button>
+                <button type='submit' className='btn btn-primary btn-block'>Login</button>
               </form>
-              <HorGrid className="lead mt-4">
+              <HorGrid className='lead mt-4'>
                 No Account? <ButtonHover
                 onClick={() => {props.setModalShowL(false); props.setModalShowR(true)}}>&nbsp;Register</ButtonHover>
               </HorGrid>

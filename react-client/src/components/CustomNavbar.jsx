@@ -24,30 +24,30 @@ function CustomNavbar(props) {
     setModalShowL(true);
   }
     return (
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home"><img src="https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png" style={{height: 45}} onClick={props.handleBackToHome} /></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
-            <Nav.Link href="#home" onClick={props.handleBackToHome}>Home</Nav.Link>
-            <Nav.Link href="#link" onClick={props.handleShowFavorites}>Favorites</Nav.Link>
-            <NavDropdown title="Options" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+      <Navbar bg='light' expand='lg'>
+        <Navbar.Brand href='#home'><img src='https://foodly-mvp.s3-us-west-1.amazonaws.com/foodly-logo.png' style={{height: 45}} onClick={props.handleBackToHome} /></Navbar.Brand>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='mr-auto'>
+            <Nav.Link href='#home' onClick={props.handleBackToHome}>Home</Nav.Link>
+            <Nav.Link href='#link' onClick={props.handleShowFavorites}>Favorites</Nav.Link>
+            <NavDropdown title='Options' id='basic-nav-dropdown'>
+              <NavDropdown.Item href='#action/3.1'>Action</NavDropdown.Item>
+              <NavDropdown.Item href='#action/3.2'>Another action</NavDropdown.Item>
+              <NavDropdown.Item href='#action/3.3'>Something</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+              <NavDropdown.Item href='#action/3.4'>Separated link</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Form inline onSubmit={props.handleSearchChange}>
-            <FormControl type="text" placeholder="Find a recipe" className="mr-sm-0" />
-            <Button variant="outline-success" type="submit">Search</Button>
+            <FormControl type='text' placeholder='Find a recipe' className='mr-sm-0' />
+            <Button variant='outline-success' type='submit'>Search</Button>
           </Form>
           <VerLine />
-          <Button variant="outline-success" onClick={() => setModalShowIS(true)}>Ingredient Search</Button>
+          <Button variant='outline-success' onClick={() => setModalShowIS(true)}>Ingredient Search</Button>
           <VerLine />
-          <Button variant="secondary" onClick={() => setModalShowL(true)}>Login</Button>
-          <Button variant="primary" onClick={() => setModalShowR(true)}>Register</Button>
+          <Button variant='secondary' onClick={() => setModalShowL(true)}>Login</Button>
+          <Button variant='primary' onClick={() => setModalShowR(true)}>Register</Button>
           <IngredientSearchModal
             show={modalShowIS}
             onHide={() => setModalShowIS(false)}/>

@@ -70,11 +70,11 @@ class Favorite extends React.Component {
           </div>
         </div>
         <div>
-          <a href={this.props.item['sourceUrl']} target="_blank"><Button type="submit">Click to See Source</Button></a>
+          <a href={this.props.item['sourceUrl']} target='_blank'><Button type='submit'>Click to See Source</Button></a>
           <Spacer></Spacer>
-          <a href={this.props.item['edmUrl']} target="_blank"><Button type="submit">Click to See Nutrients</Button></a>
+          <a href={this.props.item['edmUrl']} target='_blank'><Button type='submit'>Click to See Nutrients</Button></a>
           <Spacer></Spacer>
-          <Button variant="secondary" type="submit">Delete from Favorites</Button>
+          <Button variant='secondary' type='submit'>Delete from Favorites</Button>
         </div>
       </Container>
     )

@@ -70,11 +70,11 @@ class ListItem extends React.Component {
           </div>
         </div>
         <div>
-          <a href={this.props.item['recipe']['url']} target="_blank"><Button type="submit">Click to See Source</Button></a>
+          <a href={this.props.item['recipe']['url']} target='_blank'><Button type='submit'>Click to See Source</Button></a>
           <Spacer></Spacer>
-          <a href={this.props.item['recipe']['shareAs']} target="_blank"><Button type="submit">Click to See Nutrients</Button></a>
+          <a href={this.props.item['recipe']['shareAs']} target='_blank'><Button type='submit'>Click to See Nutrients</Button></a>
           <Spacer></Spacer>
-          <Button type="submit">Add to Favorite</Button>
+          <Button type='submit'>Add to Favorite</Button>
         </div>
       </Container>
     )
