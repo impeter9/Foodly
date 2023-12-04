@@ -53,7 +53,7 @@ function LoginModal(props) {
               <h1 className='text-center mb-3'><i className='fas fa-sign-in-alt'></i>  Login</h1>
               <form onSubmit={handleLogin} action='/users/login' method='POST'>
                 <div className='form-group'>
-                  <label for='email'>Email</label>
+                  <label htmlFor='email'>Email</label>
                   <input
                     type='email'
                     id='email'
@@ -63,7 +63,7 @@ function LoginModal(props) {
                   />
                 </div>
                 <div className='form-group'>
-                  <label for='password'>Password</label>
+                  <label htmlFor='password'>Password</label>
                   <input
                     type='password'
                     id='password'
