@@ -47,34 +47,34 @@ function LoginModal(props) {
               Registration complete please sign in!
             </Alert> :
           <div></div>}
-        <div class="row mt-5">
-          <div class="col-md-6 m-auto">
-            <div class="card card-body">
-              <h1 class="text-center mb-3"><i class="fas fa-sign-in-alt"></i>  Login</h1>
+        <div className="row mt-5">
+          <div className="col-md-6 m-auto">
+            <div className="card card-body">
+              <h1 className="text-center mb-3"><i className="fas fa-sign-in-alt"></i>  Login</h1>
               <form onSubmit={handleLogin} action="/users/login" method="POST">
-                <div class="form-group">
+                <div className="form-group">
                   <label for="email">Email</label>
                   <input
                     type="email"
                     id="email"
                     name="email"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Enter Email"
                   />
                 </div>
-                <div class="form-group">
+                <div className="form-group">
                   <label for="password">Password</label>
                   <input
                     type="password"
                     id="password"
                     name="password"
-                    class="form-control"
+                    className="form-control"
                     placeholder="Enter Password"
                   />
                 </div>
-                <button type="submit" class="btn btn-primary btn-block">Login</button>
+                <button type="submit" className="btn btn-primary btn-block">Login</button>
               </form>
-              <HorGrid class="lead mt-4">
+              <HorGrid className="lead mt-4">
                 No Account? <ButtonHover
                 onClick={() => {props.setModalShowL(false); props.setModalShowR(true)}}>&nbsp;Register</ButtonHover>
               </HorGrid>

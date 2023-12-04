@@ -52,51 +52,51 @@ function RegisterForm({updateErrors, handleRegisterComplete}) {
   };
   return (
     <form onSubmit={handleRegister} action="/users/register" method="POST">
-      <div class="form-group">
+      <div className="form-group">
         <label value="name">Name</label>
         <input
           type="name"
           id="name"
           name="name"
-          class="form-control"
+          className="form-control"
           placeholder="Enter Name"
           // value="<%= typeof name != 'undefined' ? name : '' %>"
         />
       </div>
-      <div class="form-group">
+      <div className="form-group">
         <label value="email">Email</label>
         <input
           type="email"
           id="email"
           name="email"
-          class="form-control"
+          className="form-control"
           placeholder="Enter Email"
           // value="<%= typeof email != 'undefined' ? email : '' %>"
         />
       </div>
-      <div class="form-group">
+      <div className="form-group">
         <label value="password">Password</label>
         <input
           type="password"
           id="password"
           name="password"
-          class="form-control"
+          className="form-control"
           placeholder="Create Password"
           // value="<%= typeof password != 'undefined' ? password : '' %>"
         />
       </div>
-      <div class="form-group">
+      <div className="form-group">
         <label value="password2">Confirm Password</label>
         <input
           type="password"
           id="password2"
           name="password2"
-          class="form-control"
+          className="form-control"
           placeholder="Confirm Password"
           // value="<%= typeof password2 != 'undefined' ? password2 : '' %>"
         />
       </div>
-      <button type="submit" class="btn btn-primary btn-block">
+      <button type="submit" className="btn btn-primary btn-block">
         Register
       </button>
     </form>
@@ -123,17 +123,17 @@ function RegisterModal(props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <div class="row mt-5">
-          <div class="col-md-6 m-auto">
-            <div class="card card-body">
-              <h1 class="text-center mb-3">
-                <i class="fas fa-user-plus"></i> Register
+        <div className="row mt-5">
+          <div className="col-md-6 m-auto">
+            <div className="card card-body">
+              <h1 className="text-center mb-3">
+                <i className="fas fa-user-plus"></i> Register
               </h1>
               {errors.map((error, index)=> (
                 <DismissibleAlert key={index} index={index} error={error} />
               ))}
               <RegisterForm updateErrors={updateErrors} handleRegisterComplete={props.handleRegisterComplete} />
-              <HorGrid class="lead mt-4">Already Have An Account? <ButtonHover
+              <HorGrid className="lead mt-4">Already Have An Account? <ButtonHover
                 onClick={() => {props.setModalShowR(false); props.setModalShowL(true); setErrors([])}}>&nbsp;Login</ButtonHover></HorGrid>
             </div>
           </div>
