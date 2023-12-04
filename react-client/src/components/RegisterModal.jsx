@@ -132,9 +132,9 @@ function RegisterModal(props) {
               {errors.map((error, index)=> (
                 <DismissibleAlert key={index} index={index} error={error} />
               ))}
-              <RegisterForm updateErrors={updateErrors} handleRegisterComplete={props.handleRegisterComplete} />
+              <RegisterForm updateErrors={updateErrors} handleRegisterComplete={handleRegisterComplete} />
               <HorGrid className='lead mt-4'>Already Have An Account? <ButtonHover
-                onClick={() => {props.setModalShowR(false); props.setModalShowL(true); setErrors([])}}>&nbsp;Login</ButtonHover></HorGrid>
+                onClick={() => {setModalShowR(false); setModalShowL(true); setErrors([])}}>&nbsp;Login</ButtonHover></HorGrid>
             </div>
           </div>
         </div>

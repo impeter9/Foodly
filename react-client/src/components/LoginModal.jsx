@@ -19,7 +19,7 @@ const HorGrid = styled.div`
 `;
 
 function LoginModal(props) {
-  const {setModalShowL,setModalShowR, regComp, ...modalProps} = props;
+  const {setModalShowL,setModalShowR, regComp, setRegComp, ...modalProps} = props;
   const handleLogin = e => {
     e.preventDefault();
     const {email, password} = e.target;
@@ -36,13 +36,13 @@ function LoginModal(props) {
       size='lg'
       aria-labelledby='contained-modal-title-vcenter'
     >
-      <Modal.Header closeButton onHide={() => {props.setRegComp(false)}}>
+      <Modal.Header closeButton onHide={() => {setRegComp(false)}}>
         <Modal.Title id='contained-modal-title-vcenter'>
           Welcome Back!
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        {props.regComp ?
+        {regComp ?
             <Alert variant='success'>
               Registration complete please sign in!
             </Alert> :
@@ -76,7 +76,7 @@ function LoginModal(props) {
               </form>
               <HorGrid className='lead mt-4'>
                 No Account? <ButtonHover
-                onClick={() => {props.setModalShowL(false); props.setModalShowR(true)}}>&nbsp;Register</ButtonHover>
+                onClick={() => {setModalShowL(false); setModalShowR(true)}}>&nbsp;Register</ButtonHover>
               </HorGrid>
             </div>
           </div>

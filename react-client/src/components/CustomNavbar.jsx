@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import IngredientSearchModal from './IngredientSearchModal.jsx';
@@ -14,10 +14,10 @@ const VerLine = styled.div`
 `;
 
 function CustomNavbar(props) {
-  const [modalShowIS, setModalShowIS] = React.useState(false);
-  const [modalShowR, setModalShowR] = React.useState(false);
-  const [modalShowL, setModalShowL] = React.useState(false);
-  const [regComp, setRegComp] = React.useState(false);
+  const [modalShowIS, setModalShowIS] = useState(false);
+  const [modalShowR, setModalShowR] = useState(false);
+  const [modalShowL, setModalShowL] = useState(false);
+  const [regComp, setRegComp] = useState(false);
   const handleRegisterComplete = () => {
     setRegComp(true);
     setModalShowR(false);
