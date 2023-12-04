@@ -7,7 +7,7 @@ import CustomNavbar from './components/CustomNavbar.jsx';
 import MainImageCarousels from './components/MainImageCarousels.jsx';
 import Favorites from './components/Favorites.jsx';
 
-import key from '../../config.js';
+import { key } from '../../config.js';
 
 class App extends React.Component {
   constructor(props) {

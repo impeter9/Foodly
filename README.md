@@ -9,6 +9,15 @@ Install node ^8.15.1 and webpack ^2.2.1 if not already installed.
 
 Clone repo to local machine.
 
+Generate Edamam API Key for Recipe Search: https://developer.edamam.com/
+
+Update API Key in `config.js` file with the API Key generated from above step.
+```sh
+export const key = {
+  RECIPE_API_KEY: 'example-api-key',
+}
+```
+
 From within the root directory of repo run the following commands:
 
 ```sh
