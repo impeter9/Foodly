@@ -28,7 +28,7 @@ function LoginModal(props) {
       password: password.value,
     }).then((res) => {
       console.log('login complete');
-    })
+    }).catch(err => console.log(err));
   };
   return (
     <Modal

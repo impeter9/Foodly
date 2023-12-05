@@ -2,7 +2,7 @@ const mongo = require('mongodb');
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/test', {useNewUrlParser: true})
   .then(() => console.log('mongoDB Connected...'))
-  .then((err) => console.log(err));
+  .catch(err => console.log(err));
 var RecipeModel = mongoose.model('Recipe', new mongoose.Schema({
   updated: { type: Date, default: Date.now },
   label: String,

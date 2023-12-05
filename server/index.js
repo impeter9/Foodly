@@ -68,7 +68,7 @@ app.post('/api/register', (req, res) => {
   if (errors.length > 0) {
     res.status(200).send(errors);
   } else {
-    Model.usermodel.findOne({ email: email})
+    Model.usermodel.findOne({ email: email })
       .then(user => {
         if (user) {
           errors.push({ msg: 'Email is already registered' });
@@ -94,23 +94,10 @@ app.post('/api/register', (req, res) => {
   }
 });
 
-app.post('/api/login', (req, res, next) => {
-  // passport.authenticate('local', function(err, user, info) {
-  //   if (err) { res.status(200).send(err); }
-  //   if (!user) { res.status(200).send(['User not found']); }
-  //   req.logIn(user, function(err) {
-  //     if (err) { res.status(200).send(err); }
-  //     res.status(200).send(['Login Success', user.username]);
-  //   });
-  // })(req, res, next);
-
-  // res.send('Login');
-
-  passport.authenticate('local', {
-    successRedirect: '/',
-    failureRedirect: '/api/login',
-    failureFlash: true })(req, res, next);
-});
+app.post('/api/login', passport.authenticate('local', {
+  successRedirect: '/',
+  failureRedirect: '/api/login',
+  failureFlash: true }));
 
 app.listen(PORT, function() {
   console.log(`listening on port ${PORT}!`);
