@@ -4,6 +4,7 @@ import Alert from 'react-bootstrap/Alert';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import axios from 'axios';
+import { REGISTER_PATH } from '../const.js';
 
 const ButtonHover = styled.p`
   color: rgb(238, 90, 91);
@@ -38,7 +39,7 @@ function RegisterForm({updateErrors, handleRegisterComplete}) {
   const handleRegister = e => {
     e.preventDefault();
     const {name, value, email, password, password2} = e.target;
-    axios.post('http://localhost:3000/api/register', {
+    axios.post(REGISTER_PATH, {
       name: name.value,
       email: email.value,
       password: password.value,

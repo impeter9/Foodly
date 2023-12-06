@@ -4,6 +4,7 @@ import Alert from 'react-bootstrap/Alert';
 import { Form, FormControl, Button } from 'react-bootstrap';
 import styled from 'styled-components';
 import axios from 'axios';
+import { LOGIN_PATH } from '../const.js';
 
 const ButtonHover = styled.p`
   color: rgb(238, 90, 91);
@@ -23,7 +24,7 @@ function LoginModal(props) {
   const handleLogin = e => {
     e.preventDefault();
     const {email, password} = e.target;
-    axios.post('http://localhost:3000/api/login', {
+    axios.post(LOGIN_PATH, {
       email: email.value,
       password: password.value,
     }).then((res) => {

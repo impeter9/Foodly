@@ -6,8 +6,7 @@ import List from './components/List.jsx';
 import CustomNavbar from './components/CustomNavbar.jsx';
 import MainImageCarousels from './components/MainImageCarousels.jsx';
 import Favorites from './components/Favorites.jsx';
-
-import { key } from '../../config.js';
+import { RECIPES_PATH, generateEdamamSearchURL } from './const.js';
 
 class App extends React.Component {
   constructor(props) {
@@ -21,44 +20,8 @@ class App extends React.Component {
     }
   }
 
-  componentDidMount() {
-    axios.get('http://localhost:3000/api/recipes')
-    .then((res) => {
-      const fav = res.data;
-      fav.sort(function(a,b) {
-        if (a['updated'] > b['updated']){
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-      this.setState({
-        favorites: fav,
-      });
-    });
-  }
-
-  handleBackToHome() {
-    axios.get('http://localhost:3000/api/recipes')
-    .then((res) => {
-      const fav = res.data;
-      fav.sort(function(a,b) {
-        if (a['updated'] > b['updated']){
-          return -1;
-        } else {
-          return 1;
-        }
-      });
-      this.setState({
-        favorites: fav,
-        searchBool: false,
-        favBool: false,
-      });
-    });
-  }
-
-  handleShowFavorites() {
-    axios.get('http://localhost:3000/api/recipes')
+  getRecipes(searchBool, favBool) {
+    axios.get(RECIPES_PATH)
       .then((res) => {
         const fav = res.data;
         fav.sort(function(a,b) {
@@ -70,24 +33,36 @@ class App extends React.Component {
         });
         this.setState({
           favorites: fav,
-          favBool: true,
-          searchBool: false,
+          ...(searchBool !== null && {searchBool}),
+          ...(favBool !== null && {favBool}),
         });
       });
   }
 
+  componentDidMount() {
+    this.getRecipes(null, null);
+  }
+
+  handleBackToHome() {
+    this.getRecipes(false, false);
+  }
+
+  handleShowFavorites() {
+    this.getRecipes(false, true);
+  }
+
   handleAddToFavorite(e) {
     e.preventDefault();
-    const obj = this.state.data[e.target.getAttribute('value')]['recipe'];
-    axios.post('http://localhost:3000/api/recipes', {
-      label: obj.label,
-      image: obj.image,
-      sourceUrl: obj.url,
-      edmUrl: obj.shareAs,
-      servings: obj.yield,
-      dietLabels: obj.dietLabels,
-      healthLabels: obj.healthLabels,
-      calories: Math.round(obj.calories),
+    const recipe = this.state.data[e.target.getAttribute('value')]['recipe'];
+    axios.post(RECIPES_PATH, {
+      label: recipe.label,
+      image: recipe.image,
+      sourceUrl: recipe.url,
+      edmUrl: recipe.shareAs,
+      servings: recipe.yield,
+      dietLabels: recipe.dietLabels,
+      healthLabels: recipe.healthLabels,
+      calories: Math.round(recipe.calories),
       ingredients: obj.ingredientLines,
     })
     alert('Recipe is added to your favorites!');
@@ -100,22 +75,9 @@ class App extends React.Component {
     if ((e.target[0].value.length > 0) && (!k)) {
       const ingredients = e.target[0].value.split(' ');
       e.target[0].value = '';
-      const apiURL = 'https://api.edamam.com/search?q=';
-      const apiKey = '&app_key=' + key.RECIPE_API_KEY;
-      const apiId = '&app_id=d124943d';
-      const maxTime = '&time=30';
-      const maxIngreds = `&ingr=10`;
-      const mappedIngreds = ingredients
-      .map((ingredient, idx) => {
-        if (idx < ingredients.length - 1) {
-          return ingredient + '+';
-        } else {
-          return ingredient;
-        }
-      }).join('');
-      const url = `${apiURL}${mappedIngreds}${maxIngreds}${maxTime}${apiId}${apiKey}`;
+      const edamamSearchURL = generateEdamamSearchURL(ingredients);
       window.scroll({ top: 0, left: 0, behavior: 'smooth' });
-      axios.get(url)
+      axios.get(edamamSearchURL)
         .then(response => {
         this.setState({
           data: response.data.hits,
